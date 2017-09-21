@@ -1,0 +1,19 @@
+{
+  "name": "flow-aws-lambda",
+  "version": "1.0.0",
+  "description": "Flow types for AWS Lambda functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yarax/flow-aws-lambda.git"
+  },
+  "author": "Roman Krivtsov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yarax/flow-aws-lambda/issues"
+  },
+  "homepage": "https://github.com/yarax/flow-aws-lambda#readme"
+}
