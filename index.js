@@ -248,7 +248,7 @@ export type Context = {
 
     // Functions for compatibility with earlier Node.js Runtime v0.10.42
     // For more details see http://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-using-old-runtime.html#nodejs-prog-model-oldruntime-context-methods
-    done(error?: Error, result?: any): void;
+    done(error: ?Error, result?: any): void;
     fail(error: Error): void;
     fail(message: string): void;
     succeed(message: string): void;
@@ -348,6 +348,6 @@ export type CustomAuthorizerHandler = (event: CustomAuthorizerEvent, context: Co
  * @param error – an optional parameter that you can use to provide results of the failed Lambda function execution.
  * @param result – an optional parameter that you can use to provide the result of a successful function execution. The result provided must be JSON.stringify compatible.
  */
-export type Callback = (error?: Error, result?: any) => void;
-export type ProxyCallback = (error?: Error, result?: ProxyResult) => void;
-export type CustomAuthorizerCallback = (error?: Error, result?: AuthResponse) => void;
+export type Callback = (error: ?Error, result?: any) => void;
+export type ProxyCallback = (error: ?Error, result?: ProxyResult) => void;
+export type CustomAuthorizerCallback = (error: ?Error, result?: AuthResponse) => void;
