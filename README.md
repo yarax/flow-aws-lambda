@@ -1,6 +1,6 @@
 # flow-aws-lambda
 
-Type definitions for writing AWS lambda functions. 
+Flow type definitions for AWS Lambda and API Gateway. 
 
 Since lambda function interface itself is not a npm library you cannot use Flow npm type definitions (https://github.com/flowtype/flow-typed)
 
