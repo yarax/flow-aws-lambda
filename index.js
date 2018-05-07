@@ -78,7 +78,7 @@ interface SNSEventRecord {
     Sns: SNSMessage;
 }
 
-interface SNSEvent {
+export interface SNSEvent {
     Records: Array<SNSEventRecord>;
 }
 
@@ -122,7 +122,7 @@ interface S3EventRecord {
     }
 }
 
-interface S3CreateEvent {
+export interface S3CreateEvent {
     Records: Array<S3EventRecord>;
 }
 
@@ -130,7 +130,7 @@ interface S3CreateEvent {
  * Cognito User Pool event
  * http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html
  */
-interface CognitoUserPoolEvent {
+export interface CognitoUserPoolEvent {
     version: number;
     triggerSource: "PreSignUp_SignUp" | "PostConfirmation_ConfirmSignUp" | "PreAuthentication_Authentication" | "PostAuthentication_Authentication" | "CustomMessage_SignUp" | "CustomMessage_AdminCreateUser" | "CustomMessage_ResendCode" | "CustomMessage_ForgotPassword" | "CustomMessage_UpdateUserAttribute" | "CustomMessage_VerifyUserAttribute" | "CustomMessage_Authentication" | "DefineAuthChallenge_Authentication" | "CreateAuthChallenge_Authentication" | "VerifyAuthChallengeResponse_Authentication";
     region: string;
