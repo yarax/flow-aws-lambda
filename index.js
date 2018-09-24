@@ -41,23 +41,23 @@ export type APIGatewayEvent = {
 }
 
 // API Gateway CustomAuthorizer "event"
-interface CustomAuthorizerEvent {
+export interface CustomAuthorizerEvent {
     type: string;
     authorizationToken: string;
     methodArn: string;
 }
 
 // SNS "event"
-interface SNSMessageAttribute {
+export interface SNSMessageAttribute {
     Type: string;
     Value: string;
 }
 
-interface SNSMessageAttributes {
+export interface SNSMessageAttributes {
     [name: string]: SNSMessageAttribute;
 }
 
-interface SNSMessage {
+export interface SNSMessage {
     SignatureVersion: string;
     Timestamp: string;
     Signature: string;
@@ -71,7 +71,7 @@ interface SNSMessage {
     Subject: string;
 }
 
-interface SNSEventRecord {
+export interface SNSEventRecord {
     EventVersion: string;
     EventSubscriptionArn: string;
     EventSource: string;
@@ -86,7 +86,7 @@ export interface SNSEvent {
  * S3Create event
  * https://docs.aws.amazon.com/AmazonS3/latest/dev/notification-content-structure.html
  */
-interface S3EventRecord {
+export interface S3EventRecord {
     eventVersion: string;
     eventSource: string;
     awsRegion: string;
@@ -187,11 +187,11 @@ type CloudFormationCustomResourceEventCommon = {
     }
 }
 
-type CloudFormationCustomResourceCreateEvent = CloudFormationCustomResourceEventCommon & {
+export type CloudFormationCustomResourceCreateEvent = CloudFormationCustomResourceEventCommon & {
     RequestType: "Create";
 }
 
-type CloudFormationCustomResourceUpdateEvent = CloudFormationCustomResourceEventCommon & {
+export type CloudFormationCustomResourceUpdateEvent = CloudFormationCustomResourceEventCommon & {
     RequestType: "Update";
     PhysicalResourceId: string;
     OldResourceProperties: {
@@ -199,7 +199,7 @@ type CloudFormationCustomResourceUpdateEvent = CloudFormationCustomResourceEvent
     };
 }
 
-type CloudFormationCustomResourceDeleteEvent = CloudFormationCustomResourceEventCommon & {
+export type CloudFormationCustomResourceDeleteEvent = CloudFormationCustomResourceEventCommon & {
     RequestType: "Delete";
     PhysicalResourceId: string;
 }
@@ -216,12 +216,12 @@ type CloudFormationCustomResourceResponseCommon = {
     }
 }
 
-type CloudFormationCustomResourceSuccessResponse = CloudFormationCustomResourceResponseCommon & {
+export type CloudFormationCustomResourceSuccessResponse = CloudFormationCustomResourceResponseCommon & {
     Status: "SUCCESS";
     Reason?: string;
 }
 
-type CloudFormationCustomResourceFailedResponse = CloudFormationCustomResourceResponseCommon & {
+export type CloudFormationCustomResourceFailedResponse = CloudFormationCustomResourceResponseCommon & {
     Status: "FAILED";
     Reason: string;
 }
@@ -256,18 +256,18 @@ export type Context = {
     succeed(message: string, object: any): void;
 }
 
-interface CognitoIdentity {
+export interface CognitoIdentity {
     cognitoIdentityId: string;
     cognitoIdentityPoolId: string;
 }
 
-interface ClientContext {
+export interface ClientContext {
     client: ClientContextClient;
     Custom?: any;
     env: ClientContextEnv;
 }
 
-interface ClientContextClient {
+export interface ClientContextClient {
     installationId: string;
     appTitle: string;
     appVersionName: string;
@@ -275,7 +275,7 @@ interface ClientContextClient {
     appPackageName: string;
 }
 
-interface ClientContextEnv {
+export interface ClientContextEnv {
     platformVersion: string;
     platform: string;
     make: string;
@@ -296,7 +296,7 @@ export type ProxyResult = {
  * API Gateway CustomAuthorizer AuthResponse.
  * http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html#api-gateway-custom-authorizer-output
  */
-interface AuthResponse {
+export interface AuthResponse {
     principalId: string;
     policyDocument: PolicyDocument;
     context?: AuthResponseContext;
@@ -306,7 +306,7 @@ interface AuthResponse {
  * API Gateway CustomAuthorizer AuthResponse.PolicyDocument.
  * http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html#api-gateway-custom-authorizer-output
  */
-interface PolicyDocument {
+export interface PolicyDocument {
     Version: string;
     Statement: [Statement];
 }
@@ -315,7 +315,7 @@ interface PolicyDocument {
  * API Gateway CustomAuthorizer AuthResponse.PolicyDocument.Statement.
  * http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html#api-gateway-custom-authorizer-output
  */
-interface Statement {
+export interface Statement {
     Action: string | [string];
     Effect: string;
     Resource: string | [string];
@@ -325,7 +325,7 @@ interface Statement {
  * API Gateway CustomAuthorizer AuthResponse.PolicyDocument.Statement.
  * http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html#api-gateway-custom-authorizer-output
  */
-interface AuthResponseContext {
+export interface AuthResponseContext {
     [name: string]: string | number | boolean;
 }
 
