@@ -339,7 +339,7 @@ export interface AuthResponseContext {
  */
 export type Handler = (event: any, context: Context, callback?: Callback) => Promise<any> | void;
 export type ProxyHandler = (event: APIGatewayEvent, context: Context, callback?: ProxyCallback) => Promise<ProxyResult> | void;
-export type CustomAuthorizerHandler = (event: CustomAuthorizerEvent, context: Context, callback?: CustomAuthorizerCallback) => Promise<AuthResponse> |void;
+export type CustomAuthorizerHandler = (event: CustomAuthorizerEvent, context: Context, callback?: CustomAuthorizerCallback) => Promise<AuthResponse> | void;
 
 /**
  * Optional callback parameter.
