@@ -1,6 +1,6 @@
 {
   "name": "flow-aws-lambda",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Flow types for AWS Lambda functions",
   "main": "index.js",
   "scripts": {
