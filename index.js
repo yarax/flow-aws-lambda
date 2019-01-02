@@ -5,8 +5,8 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 // API Gateway "event"
-export type APIGatewayEvent = {
-    body: null;
+export type APIGatewayEvent<T = string> = {
+    body: T | null;
     headers: { [name: string]: string };
     httpMethod: string;
     isBase64Encoded: boolean;
