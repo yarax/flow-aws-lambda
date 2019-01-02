@@ -6,7 +6,7 @@
 
 // API Gateway "event"
 export type APIGatewayEvent = {
-    body: string | null;
+    body: null;
     headers: { [name: string]: string };
     httpMethod: string;
     isBase64Encoded: boolean;
@@ -17,6 +17,7 @@ export type APIGatewayEvent = {
     requestContext: {
         accountId: string;
         apiId: string;
+        authorizer?: AuthResponseContext | any;
         httpMethod: string;
         identity: {
             accessKey: string | null;
