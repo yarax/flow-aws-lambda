@@ -48,8 +48,8 @@ export interface CloudFrontRequestEvent {
 }
 
 // API Gateway "event"
-export type APIGatewayEvent = {
-    body: string | null;
+export type APIGatewayEvent<T = string> = {
+    body: T | null;
     headers: { [name: string]: string };
     httpMethod: string;
     isBase64Encoded: boolean;
@@ -60,6 +60,7 @@ export type APIGatewayEvent = {
     requestContext: {
         accountId: string;
         apiId: string;
+        authorizer?: AuthResponseContext | any;
         httpMethod: string;
         identity: {
             accessKey: string | null;
