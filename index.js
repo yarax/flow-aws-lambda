@@ -4,6 +4,49 @@
 // Definitions by: James Darbyshire <https://github.com/darbio/aws-lambda-typescript>, Michael Skarum <https://github.com/skarum>, Stef Heyenrath <https://github.com/StefH/DefinitelyTyped>, Toby Hede <https://github.com/tobyhede>, Rich Buggy <https://github.com/buggy>, Yoriki Yamaguchi <https://github.com/y13i>, wwwy3y3 <https://github.com/wwwy3y3>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
+// CloudFront Request "event"
+export interface CloudFrontRequestEventRecordRequestBody {
+    action: string;
+    data: string;
+    encoding: string;
+    inputTruncated: boolean;
+}
+
+export interface CloudFrontRequestEventRecordRequestHeader {
+    key: string;
+    value: string;
+}
+
+export interface CloudFrontRequestEventRecordRequest {
+    body: CloudFrontRequestEventRecordRequestBody;
+    clientIp: string;
+    queryString: string;
+    uri: string;
+    method: string;
+    headers: { [key: string]: Array<CloudFrontRequestEventRecordRequestHeader> };
+    origin: {};
+}
+
+export interface CloudFrontRequestEventRecordConfig {
+    distributionDomainName: string;
+    distributionId: string;
+    eventType: string;
+    requestId: string;
+}
+
+export interface CloudFrontRequestEventRecordDetail {
+    config: CloudFrontRequestEventRecordConfig;
+    request: CloudFrontRequestEventRecordRequest;
+}
+
+export interface CloudFrontRequestEventRecord {
+    cf: CloudFrontRequestEventRecordDetail;
+}
+
+export interface CloudFrontRequestEvent {
+    Records: Array<CloudFrontRequestEventRecord>;
+}
+
 // API Gateway "event"
 export type APIGatewayEvent = {
     body: string | null;
