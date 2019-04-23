@@ -352,7 +352,7 @@ export interface AuthResponse {
  */
 export interface PolicyDocument {
     Version: string;
-    Statement: [Statement];
+    Statement: Array<Statement>;
 }
 
 /**
