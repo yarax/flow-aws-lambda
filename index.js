@@ -352,7 +352,7 @@ export interface AuthResponse {
  */
 export interface PolicyDocument {
     Version: string;
-    Statement: [Statement];
+    Statement: Array<Statement>;
 }
 
 /**
@@ -382,7 +382,7 @@ export interface AuthResponseContext {
  * @param callback – optional callback to return information to the caller, otherwise return value is null.
  */
 export type Handler = (event: any, context: Context, callback?: Callback) => Promise<any> | void;
-export type ProxyHandler = (event: APIGatewayEvent, context: Context, callback?: ProxyCallback) => Promise<ProxyResult> | void;
+export type ProxyHandler = (event: APIGatewayEvent<string>, context: Context, callback?: ProxyCallback) => Promise<ProxyResult> | void;
 export type CustomAuthorizerHandler = (event: CustomAuthorizerEvent, context: Context, callback?: CustomAuthorizerCallback) => Promise<AuthResponse> | void;
 
 /**
