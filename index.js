@@ -368,7 +368,7 @@ export type ProxyResult = {
 
 // Kinesis Streams
 // https://docs.aws.amazon.com/lambda/latest/dg/eventsources.html#eventsources-kinesis-streams
-export type KinesisStreamRecordPayload {
+export type KinesisStreamRecordPayload = {
     approximateArrivalTimestamp: number;
     data: string;
     kinesisSchemaVersion: string;
@@ -376,7 +376,7 @@ export type KinesisStreamRecordPayload {
     sequenceNumber: string;
 }
 
-export type KinesisStreamRecord {
+export type KinesisStreamRecord = {
     awsRegion: string;
     eventID: string;
     eventName: string;
@@ -387,7 +387,7 @@ export type KinesisStreamRecord {
     kinesis: KinesisStreamRecordPayload;
 }
 
-export type KinesisStreamEvent {
+export type KinesisStreamEvent = {
     Records: Array<KinesisStreamRecord>;
 }
 
