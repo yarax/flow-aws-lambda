@@ -366,6 +366,31 @@ export type ProxyResult = {
     isBase64Encoded?: boolean;
 }
 
+// Kinesis Streams
+// https://docs.aws.amazon.com/lambda/latest/dg/eventsources.html#eventsources-kinesis-streams
+export type KinesisStreamRecordPayload {
+    approximateArrivalTimestamp: number;
+    data: string;
+    kinesisSchemaVersion: string;
+    partitionKey: string;
+    sequenceNumber: string;
+}
+
+export type KinesisStreamRecord {
+    awsRegion: string;
+    eventID: string;
+    eventName: string;
+    eventSource: string;
+    eventSourceARN: string;
+    eventVersion: string;
+    invokeIdentityArn: string;
+    kinesis: KinesisStreamRecordPayload;
+}
+
+export type KinesisStreamEvent {
+    Records: Array<KinesisStreamRecord>;
+}
+
 /**
  * API Gateway CustomAuthorizer AuthResponse.
  * http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html#api-gateway-custom-authorizer-output
