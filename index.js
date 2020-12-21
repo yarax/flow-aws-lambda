@@ -4,48 +4,114 @@
 // Definitions by: James Darbyshire <https://github.com/darbio/aws-lambda-typescript>, Michael Skarum <https://github.com/skarum>, Stef Heyenrath <https://github.com/StefH/DefinitelyTyped>, Toby Hede <https://github.com/tobyhede>, Rich Buggy <https://github.com/buggy>, Yoriki Yamaguchi <https://github.com/y13i>, wwwy3y3 <https://github.com/wwwy3y3>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-// CloudFront Request "event"
-export interface CloudFrontRequestEventRecordRequestBody {
-    action: string;
+export type CloudFrontRequestEventRecordRequestBody = {|
+    action: 'read-only' | 'replace';
     data: string;
-    encoding: string;
-    inputTruncated: boolean;
-}
+    encoding: 'base64' | 'text';
+    +inputTruncated: boolean;
+|}
 
-export interface CloudFrontRequestEventRecordRequestHeader {
-    key: string;
+export type CloudFrontHeader = {|
+    key?: string;
     value: string;
-}
+|}
 
-export interface CloudFrontRequestEventRecordRequest {
-    body: CloudFrontRequestEventRecordRequestBody;
-    clientIp: string;
-    queryString: string;
+export type CloudFrontHeaders = {|
+    [name: string]: CloudFrontHeader[];
+|}
+
+export type CloudFrontCustomOrigin = {|
+    customHeaders: CloudFrontHeaders;
+    domainName: string;
+    keepaliveTimeout: number;
+    path: string;
+    port: number;
+    protocol: 'http' | 'https';
+    readTimeout: number;
+    sslProtocols: string[];
+|}
+
+export type CloudFrontS3Origin = {|
+    authMethod: 'origin-access-identity' | 'none';
+    customHeaders: CloudFrontHeaders;
+    domainName: string;
+    path: string;
+    region: string;
+|}
+
+export type CloudFrontOrigin =
+| {| s3: CloudFrontS3Origin |}
+| {| custom: CloudFrontCustomOrigin |};
+
+export type CloudFrontRequest = {|
+    body?: CloudFrontRequestEventRecordRequestBody;
+    +clientIp: string;
+    +method: string;
     uri: string;
-    method: string;
-    headers: { [key: string]: Array<CloudFrontRequestEventRecordRequestHeader> };
-    origin: {};
-}
+    querystring: string;
+    headers: CloudFrontHeaders;
+    origin?: CloudFrontOrigin;
+|}
 
-export interface CloudFrontRequestEventRecordConfig {
-    distributionDomainName: string;
-    distributionId: string;
-    eventType: string;
-    requestId: string;
-}
+export type CloudFrontRequestEventRecordConfig = {|
+    +distributionDomainName: string;
+    +distributionId: string;
+    +eventType: 'origin-request' | 'origin-response' | 'viewer-request' | 'viewer-response';
+    +requestId: string;
+|}
 
-export interface CloudFrontRequestEventRecordDetail {
+export type CloudFrontEvent = {
     config: CloudFrontRequestEventRecordConfig;
-    request: CloudFrontRequestEventRecordRequest;
 }
 
-export interface CloudFrontRequestEventRecord {
+export type CloudFrontRequestEventRecordDetail = CloudFrontEvent & { request: CloudFrontRequest };
+
+export type CloudFrontResponse = {|
+    status: string;
+    statusDescription: string;
+    headers: CloudFrontHeaders;
+|}
+
+export type CloudFrontResponseEventRecordDetail = CloudFrontEvent & {
+    +request: $Diff<CloudFrontRequest, {| body?: CloudFrontRequestEventRecordRequestBody |}>;
+    response: CloudFrontResponse;
+};
+
+export type CloudFrontRequestEventRecord = {|
     cf: CloudFrontRequestEventRecordDetail;
-}
+|}
 
-export interface CloudFrontRequestEvent {
+export type CloudFrontRequestEvent = {|
     Records: Array<CloudFrontRequestEventRecord>;
-}
+|}
+
+export type CloudFrontResponseEventRecord = {|
+    cf: CloudFrontResponseEventRecordDetail;
+|}
+
+/**
+ * CloudFront viewer response or origin response event
+ *
+ * https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-event-structure.html#lambda-event-structure-response
+ */
+export type CloudFrontResponseEvent = {|
+    Records: CloudFrontResponseEventRecord[];
+|}
+
+/**
+ * Generated HTTP response in viewer request event or origin request event
+ *
+ * https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-generating-http-responses-in-requests.html#lambda-generating-http-responses-object
+ */
+export type CloudFrontResultResponse = {|
+    status: string;
+    statusDescription?: string;
+    headers?: CloudFrontHeaders;
+    bodyEncoding?: 'text' | 'base64';
+    body?: string;
+|}
+
+export type CloudFrontResponseResult = void | null | CloudFrontResultResponse;
 
 // API Gateway "event"
 export type APIGatewayEvent<T = string> = {
